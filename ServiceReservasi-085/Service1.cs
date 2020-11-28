@@ -82,13 +82,22 @@ namespace ServiceReservasi_085
             string a = "gagal";
             try
             {
-                string sql = "insert into dbo.Pemesanan values ('"+ IDPemesanan + "','" + NamaCustomer + "','" + NoTelpon + "','" + JumlahPemesanan + "','" + IDLokasi + "')";
+                string sql = "insert into dbo.Pemesanan values ('"+ IDPemesanan + "','" + NamaCustomer + "','" + NoTelpon + "','" + JumlahPemesanan + "','" + IDLokasi + "')"; //petik 1 untuk menyatakan varchar, petik 2 untuk menyatakan integer
                 connection = new SqlConnection(constring); //fungsi konek ke database
                 com = new SqlCommand(sql, connection);
                 connection.Open();
                 com.ExecuteNonQuery();
                 connection.Close();
+
+                string sql2 = "update dbo.Lokasi set Kuota = Kuota - " + JumlahPemesanan + " where ID_Lokasi = '" + IDLokasi + "' ";
+                connection = new SqlConnection(constring); //fungsi konek ke database
+                com = new SqlCommand(sql2, connection);
+                connection.Open();
+                com.ExecuteNonQuery();
+                connection.Close();
+
                 a = "sukses";
+
             }
 
             catch (Exception es)
