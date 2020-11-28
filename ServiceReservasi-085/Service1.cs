@@ -91,11 +91,6 @@ namespace ServiceReservasi_085
             return composite;
         }
 
-        public string deletePemesanan(string IDPemesanan)
-        {
-            throw new NotImplementedException();
-        }
-
         public string pemesanan(string IDPemesanan, string NamaCustomer, string NoTelpon, string JumlahPemesanan, string IDLokasi)
         {
             string a = "gagal";
@@ -160,6 +155,28 @@ namespace ServiceReservasi_085
             }
 
             return pemesanans;
+        }
+
+        public string deletePemesanan(string IDPemesanan)
+        {
+            string a = "gagal";
+            try
+            {
+                string sql = "delete from dbo.Pemesanan where ID_reservasi = '" + IDPemesanan + "'";
+                connection = new SqlConnection(constring); //fungsi konek ke db
+                com = new SqlCommand(sql, connection);
+                connection.Open();
+                com.ExecuteNonQuery();
+                connection.Close();
+                a = "sukses";
+            }
+
+            catch (Exception es)
+            {
+                Console.WriteLine(es);
+            }
+
+            return a;
         }
 
         public List<CekLokasi> ReviewLokasi()
