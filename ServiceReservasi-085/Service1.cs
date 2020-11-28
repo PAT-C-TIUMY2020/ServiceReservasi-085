@@ -11,14 +11,9 @@ namespace ServiceReservasi_085
     // NOTE: You can use the "Rename" command on the "Refactor" menu to change the class name "Service1" in both code and config file together.
     public class Service1 : IService1
     {
-        string constring = "Data Source=DESKTOP-KT69I3S;Initial Catalog=WCFTest;Persist Security Info=True;User ID=sa;Password=ifan99";
+        string constring = "Data Source=DESKTOP-KT69I3S;Initial Catalog=WCFReservasi;Persist Security Info=True;User ID=sa;Password=ifan99";
         SqlConnection connection;
         SqlCommand com; //untuk mengkoneksikan database ke visual studio
-
-        public string deletePemesanan(string IDPemesanan)
-        {
-            throw new NotImplementedException();
-        }
 
         public List<DetailLokasi> DetailLokasi()
         {
@@ -75,6 +70,11 @@ namespace ServiceReservasi_085
                 composite.StringValue += "Suffix";
             }
             return composite;
+        }
+
+        public string deletePemesanan(string IDPemesanan)
+        {
+            throw new NotImplementedException();
         }
 
         public string pemesanan(string IDPemesanan, string NamaCustomer, string NoTelpon, string JumlahPemesanan, string IDLokasi)
