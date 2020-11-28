@@ -129,7 +129,37 @@ namespace ServiceReservasi_085
 
         public List<Pemesanan> Pemesanan()
         {
-            throw new NotImplementedException();
+            List<Pemesanan> pemesanans = new List<Pemesanan>(); //proses mendeclare nama list yg telah dibuat
+            try
+            {
+                string sql = "select ID_reservasi, Nama_customer, No_telpon, " +
+                    "Jumlah_pemesanan, Nama_Lokasi from dbo.Pemesanan p join dbo.Lokasi 1 on p.ID_lokasi = 1.ID_lokasi";
+                connection = new SqlConnection(constring); //fungsi konek ke database
+                connection.Open(); //membuka koneksi
+                SqlDataReader reader = com.ExecuteReader(); //menampilkan data query
+                while (reader.Read())
+                {
+                    /*nama class*/
+                    Pemesanan data = new Pemesanan(); //deklarasi data, mengambil 1 per satu dari db
+                    //bwntuk array
+                    data.IDPemesanan = reader.GetString(0); // 0 itu indeks, ada dikolom ke brp di string sql diatas
+                    data.NamaCustomer = reader.GetString(1);
+                    data.NoTelpon = reader.GetString(2);
+                    data.JumlahPemesanan = reader.GetInt32(3);
+                    data.Lokasi = reader.GetString(4);
+                    pemesanans.Add(data); //mengumpulkan data yg awalnya dari array
+                }
+
+                connection.Close(); //untuk menutup akses ke db
+
+            }
+
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex);
+            }
+
+            return pemesanans;
         }
 
         public List<CekLokasi> ReviewLokasi()

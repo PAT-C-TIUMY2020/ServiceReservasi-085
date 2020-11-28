@@ -77,7 +77,7 @@ namespace ServiceReservasi_085
         public int JumlahPemesanan { get; set; }
 
         [DataMember]
-        public string IDLokasi { get; set; }
+        public string Lokasi { get; set; }
     }
 
     // Use a data contract as illustrated in the sample below to add composite types to service operations.
