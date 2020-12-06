@@ -20,7 +20,7 @@ namespace ServiceReservasi_085
             List<DetailLokasi> LokasiFull = new List<DetailLokasi>(); //proses untuk mendeclare nama list yg telah dibuat dengan nama baru
             try
             {
-                string sql = "select ID_lokasi, Nama_lokasi, Deskripsi_full, Kuota from dbo.lokasi"; //declare query
+                string sql = "select ID_lokasi, Nama_lokasi, Deskripsi_full, Kuota from dbo.Lokasi"; //declare query
                 connection = new SqlConnection(constring); //fungsi konek ke database
                 com = new SqlCommand(sql, connection); //proses execute query
                 connection.Open(); //membuka koneksi
@@ -54,7 +54,7 @@ namespace ServiceReservasi_085
             string a = "gagal";
             try
             {
-                string sql = "update into dbo.Pemesanan set Nama_customer = '" + NamaCustomer + "', No_telpon = '" + No_telpon + "'" + " where ID_reservasi = '" + IDPemesanan + "' "; //petik 1 untuk menyatakan varchar, petik 2 untuk menyatakan integer
+                string sql = "update dbo.Pemesanan set Nama_customer = '" + NamaCustomer + "', No_telpon = '" + No_telpon + "'" + " where ID_reservasi = '" + IDPemesanan + "' "; //petik 1 untuk menyatakan varchar, petik 2 untuk menyatakan integer
                 connection = new SqlConnection(constring); //fungsi konek ke database
                 com = new SqlCommand(sql, connection);
                 connection.Open();
@@ -91,7 +91,7 @@ namespace ServiceReservasi_085
             return composite;
         }
 
-        public string pemesanan(string IDPemesanan, string NamaCustomer, string NoTelpon, string JumlahPemesanan, string IDLokasi)
+        public string pemesanan(string IDPemesanan, string NamaCustomer, string NoTelpon, int JumlahPemesanan, string IDLokasi)
         {
             string a = "gagal";
             try
@@ -103,7 +103,7 @@ namespace ServiceReservasi_085
                 com.ExecuteNonQuery();
                 connection.Close();
 
-                string sql2 = "update dbo.Lokasi set Kuota = Kuota - " + JumlahPemesanan + " where ID_Lokasi = '" + IDLokasi + "' ";
+                string sql2 = "update dbo.Lokasi set Kuota = Kuota - " + JumlahPemesanan + " where ID_lokasi = '" + IDLokasi + "' ";
                 connection = new SqlConnection(constring); //fungsi konek ke database
                 com = new SqlCommand(sql2, connection);
                 connection.Open();
@@ -128,8 +128,9 @@ namespace ServiceReservasi_085
             try
             {
                 string sql = "select ID_reservasi, Nama_customer, No_telpon, " +
-                    "Jumlah_pemesanan, Nama_Lokasi from dbo.Pemesanan p join dbo.Lokasi 1 on p.ID_lokasi = 1.ID_lokasi";
+                    "Jumlah_pemesanan, Nama_lokasi from dbo.Pemesanan p join dbo.Lokasi l on p.ID_lokasi = l.ID_lokasi";
                 connection = new SqlConnection(constring); //fungsi konek ke database
+                com = new SqlCommand(sql, connection); //proses execute query
                 connection.Open(); //membuka koneksi
                 SqlDataReader reader = com.ExecuteReader(); //menampilkan data query
                 while (reader.Read())

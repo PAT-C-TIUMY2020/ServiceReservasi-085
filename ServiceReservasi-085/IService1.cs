@@ -12,8 +12,7 @@ namespace ServiceReservasi_085
     public interface IService1
     {
         [OperationContract]
-        string pemesanan(string IDPemesanan, string NamaCustomer, string NoTelpon, string JumlahPemesanan, string IDLokasi);  //method //proses input data
-
+        string pemesanan(string IDPemesanan, string NamaCustomer, string NoTelpon, int JumlahPemesanan, string IDLokasi);  //method //proses input data
 
         [OperationContract]
         string editPemesanan(string IDPemesanan, string NamaCustomer, string No_telpon);
