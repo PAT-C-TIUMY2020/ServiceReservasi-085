@@ -109,7 +109,7 @@ namespace ServiceReservasi_085
             List<DataRegister> list = new List<DataRegister>();
             try
             {
-                string sql = "select ID_login, Username, Password. Kategori from Login";
+                string sql = "select ID_login, Username, Password, Kategori from Login";
                 connection = new SqlConnection(constring);
                 com = new SqlCommand(sql, connection);
                 connection.Open();
