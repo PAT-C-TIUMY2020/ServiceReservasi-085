@@ -72,6 +72,37 @@ namespace ServiceReservasi_085
             }
         }
 
+        public string DeleteRegister (string username)
+        {
+            try
+            {
+                int id = 0;
+                string sql = "select ID_Login from dbo.Login where Username = '" + username + "'";
+                connection = new SqlConnection(constring);
+                com = new SqlCommand(sql, connection);
+                connection.Open();
+                SqlDataReader reader = com.ExecuteReader();
+                while (reader.Read())
+                {
+                    id = reader.GetInt32(0);
+                }
+
+                connection.Close();
+                string sql2 = "delete from Login where ID_Login '" + id + "'";
+                com = new SqlCommand(sql, connection);
+                connection.Open();
+                com.ExecuteNonQuery();
+                connection.Close();
+
+                return "Sukses";
+            }
+
+            catch (Exception e)
+            {
+                return e.ToString();
+            }
+        }
+
         public List<DetailLokasi> DetailLokasi()
         {
             List<DetailLokasi> LokasiFull = new List<DetailLokasi>(); //proses untuk mendeclare nama list yg telah dibuat dengan nama baru
