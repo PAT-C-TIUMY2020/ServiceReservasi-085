@@ -56,7 +56,7 @@ namespace ServiceReservasi_085
         {
             try
             {
-                string sql2 = "update Login SET username = '" + username + "', Password = '" + password + "', Kategori = '" + username + "' where ID_Login = '" + id + "'";
+                string sql2 = "update Login SET username = '" + username + "', Password = '" + password + "', Kategori = '" + username + "' where ID_login = '" + id + "'";
                 connection = new SqlConnection(constring);
                 com = new SqlCommand(sql2, connection);
                 connection.Open();
@@ -77,7 +77,7 @@ namespace ServiceReservasi_085
             try
             {
                 int id = 0;
-                string sql = "select ID_Login from dbo.Login where Username = '" + username + "'";
+                string sql = "select ID_login from dbo.Login where Username = '" + username + "'";
                 connection = new SqlConnection(constring);
                 com = new SqlCommand(sql, connection);
                 connection.Open();
@@ -88,7 +88,7 @@ namespace ServiceReservasi_085
                 }
 
                 connection.Close();
-                string sql2 = "delete from Login where ID_Login '" + id + "'";
+                string sql2 = "delete from Login where ID_login '" + id + "'";
                 connection = new SqlConnection(constring);
                 com = new SqlCommand(sql2, connection);
                 connection.Open();
@@ -109,7 +109,7 @@ namespace ServiceReservasi_085
             List<DataRegister> list = new List<DataRegister>();
             try
             {
-                string sql = "select ID_Login, Username, Password. Kategori from Login";
+                string sql = "select ID_login, Username, Password. Kategori from Login";
                 connection = new SqlConnection(constring);
                 com = new SqlCommand(sql, connection);
                 connection.Open();
