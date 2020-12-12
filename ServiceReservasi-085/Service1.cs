@@ -103,6 +103,37 @@ namespace ServiceReservasi_085
             }
         }
 
+        public List<DataRegister> DataRegist()
+        {
+            List<DataRegister> list = new List<DataRegister>();
+            try
+            {
+                string sql = "select ID_Login, Username, Password. Kategori from Login";
+                connection = new SqlConnection(constring);
+                com = new SqlCommand(sql, connection);
+                connection.Open();
+                SqlDataReader reader = com.ExecuteReader();
+                while (reader.Read())
+                {
+                    DataRegister data = new DataRegister();
+                    data.id = reader.GetInt32(0);
+                    data.username = reader.GetString(1);
+                    data.password = reader.GetString(2);
+                    data.kategori = reader.GetString(3);
+                    list.Add(data);
+                }
+
+                connection.Close();
+            }
+
+            catch (Exception e)
+            {
+                e.ToString();
+            }
+
+            return list;
+        }
+
         public List<DetailLokasi> DetailLokasi()
         {
             List<DetailLokasi> LokasiFull = new List<DetailLokasi>(); //proses untuk mendeclare nama list yg telah dibuat dengan nama baru
