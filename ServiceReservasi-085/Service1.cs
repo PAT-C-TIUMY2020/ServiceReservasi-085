@@ -89,7 +89,8 @@ namespace ServiceReservasi_085
 
                 connection.Close();
                 string sql2 = "delete from Login where ID_Login '" + id + "'";
-                com = new SqlCommand(sql, connection);
+                connection = new SqlConnection(constring);
+                com = new SqlCommand(sql2, connection);
                 connection.Open();
                 com.ExecuteNonQuery();
                 connection.Close();
