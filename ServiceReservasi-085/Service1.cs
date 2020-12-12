@@ -15,6 +15,23 @@ namespace ServiceReservasi_085
         SqlConnection connection;
         SqlCommand com; //untuk mengkoneksikan database ke visual studio
 
+        public string Login (string username, string password)
+        {
+            string kategori = "";
+
+            string sql = "select Kategori from Login where Username = '" + username + "' and Password = '" + password + "'";
+            connection = new SqlConnection(constring);
+            com = new SqlCommand(sql, connection);
+            connection.Open();
+            SqlDataReader reader = com.ExecuteReader();
+            while (reader.Read())
+            {
+                kategori = reader.GetString(0);
+            }
+
+            return kategori;
+        }
+
         public List<DetailLokasi> DetailLokasi()
         {
             List<DetailLokasi> LokasiFull = new List<DetailLokasi>(); //proses untuk mendeclare nama list yg telah dibuat dengan nama baru

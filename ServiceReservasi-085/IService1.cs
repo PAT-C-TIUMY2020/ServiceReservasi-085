@@ -12,7 +12,7 @@ namespace ServiceReservasi_085
     public interface IService1
     {
         [OperationContract]
-        string Login(string username, string password);
+        string Login (string username, string password);
 
         [OperationContract]
         string Register (string username, string password, string kategori);
