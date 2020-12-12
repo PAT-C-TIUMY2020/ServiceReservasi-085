@@ -52,6 +52,26 @@ namespace ServiceReservasi_085
             }
         }
 
+        public string UpdateRegister (string username, string password, string kategori, int id)
+        {
+            try
+            {
+                string sql2 = "update Login SET username = '" + username + "', Password = '" + password + "', Kategori = '" + username + "' where ID_Login = '" + id + "'";
+                connection = new SqlConnection(constring);
+                com = new SqlCommand(sql2, connection);
+                connection.Open();
+                com.ExecuteNonQuery();
+                connection.Close();
+
+                return "Sukses";
+            }
+
+            catch (Exception e)
+            {
+                return e.ToString();
+            }
+        }
+
         public List<DetailLokasi> DetailLokasi()
         {
             List<DetailLokasi> LokasiFull = new List<DetailLokasi>(); //proses untuk mendeclare nama list yg telah dibuat dengan nama baru
