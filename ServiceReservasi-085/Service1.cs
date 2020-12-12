@@ -32,6 +32,26 @@ namespace ServiceReservasi_085
             return kategori;
         }
 
+        public string Register (string username, string password, string kategori)
+        {
+            try
+            {
+                string sql = "insert into Login values('" + username + "', '" + password + "', '" + kategori + "')";
+                connection = new SqlConnection(constring);
+                com = new SqlCommand(sql, connection);
+                connection.Open();
+                com.ExecuteNonQuery();
+                connection.Close();
+
+                return "Sukses";
+            }
+
+            catch (Exception e)
+            {
+                return e.ToString();
+            }
+        }
+
         public List<DetailLokasi> DetailLokasi()
         {
             List<DetailLokasi> LokasiFull = new List<DetailLokasi>(); //proses untuk mendeclare nama list yg telah dibuat dengan nama baru
